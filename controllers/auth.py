@@ -14,7 +14,6 @@ def signIn():
       os.environ.get("AUTH_SERVICE_URL") + "/users/signin",
       json=request.json
     )
-
     sign_in_res.raise_for_status()
 
     res = make_response({ "message": "Success." })
