@@ -63,7 +63,6 @@ def create_workflow():
   except requests.exceptions.HTTPError as err:
     return err.response.json(), err.response.status_code
   except Exception as err:
-    print(err)
     return { "message": "Internal server error" }, 500
   
 @bp.get("/<string:workflow_id>")
@@ -107,7 +106,6 @@ def add_workflow_step(workflow_id):
   except requests.exceptions.HTTPError as err:
     return err.response.json(), err.response.status_code
   except Exception as err:
-    print(err)
     return { "message": "Internal server error" }, 500
 
 @bp.post("/addstepcode/<string:workflow_id>/<string:step_id>")
@@ -130,5 +128,4 @@ def add_workflow_step_code(workflow_id, step_id):
   except requests.exceptions.HTTPError as err:
     return err.response.json(), err.response.status_code
   except Exception as err:
-    print(err)
     return { "message": "Internal server error" }, 500
