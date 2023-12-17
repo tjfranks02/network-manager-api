@@ -43,9 +43,11 @@ def create_workflow():
 
     curr = get_cursor()
 
-    res = curr.execute("""INSERT INTO workflows (id, name, description) VALUES (%s, %s, %s)""", 
+    curr.execute("""INSERT INTO workflows (id, name, description) VALUES (%s, %s, %s)""", 
       (id, name, description)
     )
+
+    commit()
 
     return "Success.", 200
   except requests.exceptions.HTTPError as err:

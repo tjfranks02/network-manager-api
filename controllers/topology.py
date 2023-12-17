@@ -7,10 +7,6 @@ bp = Blueprint("topology", __name__, url_prefix="/topology")
 
 @bp.before_request
 def beforeRequest():
-<<<<<<< HEAD
-  cache.set("woot", "woot")
-=======
->>>>>>> f8370ad6a4b8f3e2c752e3eccb1762bec015546f
   # Check if the request is authorized
   try:
     # Get the access token from the request cookies
