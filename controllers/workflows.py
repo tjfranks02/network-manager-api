@@ -47,7 +47,7 @@ def create_workflow():
       (id, name, description)
     )
 
-    return , 200
+    return "Success.", 200
   except requests.exceptions.HTTPError as err:
     return err.response.json(), err.response.status_code
   except Exception as err:
