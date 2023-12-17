@@ -72,7 +72,13 @@ def get_workflow(workflow_id):
 
     curr.execute("""SELECT * FROM workflows WHERE id = %s""", (workflow_id,))
 
-    workflow = curr.fetchone()
+    response = curr.fetchone()
+
+    workflow = {
+      "id": response[0],
+      "name": response[1],
+      "description": response[2]
+    }
 
     if not workflow:
       return { "message": "Workflow not found." }, 404
