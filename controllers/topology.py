@@ -8,8 +8,6 @@ bp = Blueprint("topology", __name__, url_prefix="/topology")
 
 @bp.before_request
 def beforeRequest():
-
-  print(cache.cache)
   cache.set("woot", "woot")
   # Check if the request is authorized
   try:
