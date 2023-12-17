@@ -54,3 +54,21 @@ def create_workflow():
   except Exception as err:
     print(err)
     return { "message": "Internal server error" }, 500
+  
+@bp.get("/<string:workflow_id>")
+def get_workflow(workflow_id):
+  try:
+    curr = get_cursor()
+
+    curr.execute("""SELECT * FROM workflows WHERE id = %s""", (workflow_id,))
+
+    workflow = curr.fetchone()
+
+    if not workflow:
+      return { "message": "Workflow not found." }, 404
+
+    return { "workflow": workflow }, 200
+  except requests.exceptions.HTTPError as err:
+    return err.response.json(), err.response.status_code
+  except Exception as err:
+    return { "message": "Internal server error" }, 500
