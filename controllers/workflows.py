@@ -1,6 +1,5 @@
-from flask import request, make_response, Blueprint
+from flask import request, Blueprint
 import requests
-import os
 
 import uuid
 
@@ -8,7 +7,7 @@ from utils.db import get_cursor, commit
 
 import utils.pub_key_cache as cache
 
-bp = Blueprint("workflows", __name__, url_prefix="/workflow")
+bp = Blueprint("workflows", __name__, url_prefix="/workflows")
 
 @bp.post("/createdb")
 def create_db():
@@ -49,7 +48,7 @@ def create_workflow():
 
     commit()
 
-    return "Success.", 200
+    return { "id": id }, 200
   except requests.exceptions.HTTPError as err:
     return err.response.json(), err.response.status_code
   except Exception as err:
